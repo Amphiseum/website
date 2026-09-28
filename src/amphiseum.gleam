@@ -10,6 +10,7 @@ import navbar
 import pages/home
 import pages/contact
 import pages/about
+import pages/services
 
 pub fn main() {
   let app = lustre.application(init, update, view)
@@ -19,6 +20,7 @@ pub fn main() {
 pub type Route {
   Home
   About
+  Services
   Contact
 }
 
@@ -30,6 +32,7 @@ pub fn init(_) -> #(Route, Effect(Msg)) {
       case path {
         Ok(["about"]) -> About
         Ok(["contact"]) -> Contact
+        Ok(["services"]) -> Services
         _ -> Home
       }
     }
@@ -41,6 +44,7 @@ fn on_url_change(uri: Uri) -> Msg {
   case uri.path_segments(uri.path) {
     ["about"] -> OnRouteChange(About)
     ["contact"] -> OnRouteChange(Contact)
+    ["services"] -> OnRouteChange(Services)
     _ -> OnRouteChange(Home)
   }
 }
@@ -62,6 +66,7 @@ fn view(route: Route) -> Element(Msg) {
       Home -> home.add()
       About -> about.add()
       Contact -> contact.add()
+      Services -> services.add()
     },
     footer.add(),
   ])

@@ -15,14 +15,22 @@ pub fn add() {
       #("font-weight", "bold"),
       #("font-size", "1.5rem"),
     ])], [
+      html.img([
+        attribute.src("/frog.png"),
+        attribute.styles([#("height", "25px")]),
+      ]),
       html.text("Amphiseum"),
     ]),
 
-    html.div([], [
+    html.div([attribute.styles([
+      #("display", "flex"),
+      #("gap", "1rem"),
+    ])], [
       html.a([attribute.href("/")], [html.text("Home")]),
+      html.a([attribute.href("/services")], [html.text("Services")]),
       html.a([attribute.href("/about")], [html.text("About")]),
       html.a([attribute.href("/contact")], [html.text("Contact")]),
-    ]),
+    ])
 
   ])
 }
