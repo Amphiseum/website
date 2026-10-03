@@ -1,5 +1,17 @@
 import lustre/attribute
+import lustre/element.{type Element}
 import lustre/element/html
+
+fn link(label: String, href: String) -> Element(msg) {
+  html.a([
+    attribute.href(href),
+    attribute.styles([
+      #("color", "#000000"),
+      #("text-decoration", "none"),
+      #("font-weight", "bold"),
+    ]),
+  ], [html.text(label)])
+}
 
 pub fn add() {
   html.nav([ attribute.styles([
@@ -7,7 +19,7 @@ pub fn add() {
     #("align-items", "center"),
     #("justify-content", "space-between"),
     #("height", "67px"),
-    #("padding", "0 1.5rem"),
+    #("padding", "0 1rem"),
     #("border-bottom", "1px solid #000000"),
   ])], [
 
@@ -26,11 +38,10 @@ pub fn add() {
       #("display", "flex"),
       #("gap", "1rem"),
     ])], [
-      html.a([attribute.href("/")], [html.text("Home")]),
-      html.a([attribute.href("/services")], [html.text("Services")]),
-      html.a([attribute.href("/about")], [html.text("About")]),
-      html.a([attribute.href("/contact")], [html.text("Contact")]),
+      link("Home", "/"),
+      link("Services", "/services"),
+      link("About", "/about"),
+      link("Contact", "/contact"),
     ])
-
   ])
 }

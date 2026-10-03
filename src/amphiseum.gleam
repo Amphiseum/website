@@ -2,6 +2,7 @@ import footer
 import gleam/result
 import gleam/uri.{type Uri}
 import lustre
+import lustre/attribute
 import lustre/effect.{type Effect}
 import lustre/element.{type Element}
 import lustre/element/html
@@ -60,14 +61,17 @@ fn update(_, msg: Msg) -> #(Route, Effect(Msg)) {
 }
 
 fn view(route: Route) -> Element(Msg) {
-  html.div([], [
-    navbar.add(),
-    case route {
-      Home -> home.add()
-      About -> about.add()
-      Contact -> contact.add()
-      Services -> services.add()
-    },
-    footer.add(),
+  html.div([attribute.styles([
+      #("font-family", "sans-serif"),
+      #("color","#393e6a")
+    ])], [
+      navbar.add(),
+      case route {
+        Home -> home.add()
+        About -> about.add()
+        Contact -> contact.add()
+        Services -> services.add()
+      },
+      footer.add(),
   ])
 }
