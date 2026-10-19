@@ -5,6 +5,8 @@ pub fn add(){
      html.div([],[
           html.h1([],[html.text("contact")]),
 
+          html.h4([],[html.text("Contact us now to receive a detailed quote tailored to your needs. We can discuss further either through email or phone.")]),
+
           html.form([attribute.styles([
                #("display", "flex"),
                #("flex-direction", "column"),
@@ -22,8 +24,6 @@ pub fn add(){
 
                html.button([attribute.type_("button")], [html.text("send")]),
           ]),
-
-          html.h4([],[html.text("or,")]),
 
           html.div([attribute.styles([
                #("display", "flex"),
