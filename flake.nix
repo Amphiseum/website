@@ -3,6 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+
+    mk-script.url = "github:givikuna/nix-mkScript";
   };
 
   outputs =
@@ -16,6 +18,8 @@
         nativeBuildInputs =
           (with pkgs; [
             gleam
+
+            elvish
           ])
           ++ (
             with pkgs;
@@ -25,6 +29,7 @@
               beamPackages.rebar3
             ]
           );
+        # buildInputs = [ ];
       };
     };
 }
