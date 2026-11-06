@@ -8,27 +8,36 @@
   };
 
   outputs =
-    { self, nixpkgs }:
+    {
+      self,
+      nixpkgs,
+      mk-script,
+    }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
+
+      mkScript = mk-script.lib.mkScript pkgs { };
     in
     {
       devShells.${system}.default = pkgs.mkShell {
-        nativeBuildInputs =
-          (with pkgs; [
-            gleam
+        nativeBuildInputs = [
+          (mkScript "dev-start" "dev-scripts/dev-start.elv")
+        ]
+        ++ (with pkgs; [
+          gleam
 
-            elvish
-          ])
-          ++ (
-            with pkgs;
-            with beamPackages;
-            [
-              beamPackages.erlang
-              beamPackages.rebar3
-            ]
-          );
+          elvish
+        ])
+        ++ (
+          with pkgs;
+          with beamPackages;
+          [
+            beamPackages.erlang
+            beamPackages.rebar3
+          ]
+        );
+
         # buildInputs = [ ];
       };
     };
