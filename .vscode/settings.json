@@ -1,3 +1,14 @@
 {
-  "cSpell.words": ["Amphiseum", "licences", "pkgs", "rebar", "stdlib"]
+  "cSpell.words": [
+    "Amphiseum",
+    "colour",
+    "hpack",
+    "httpc",
+    "licences",
+    "pkgs",
+    "rebar",
+    "simplifile",
+    "stdlib",
+    "websocks"
+  ]
 }
