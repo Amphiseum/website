@@ -1,22 +1,30 @@
 {
-  description = "A very basic flake";
+  description = "Amphiseum Website";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, nixpkgs }:
+  outputs =
+    { self, nixpkgs }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
     in
     {
       devShells.${system}.default = pkgs.mkShell {
-        nativeBuildInputs = [
-          pkgs.gleam
-          pkgs.beamPackages.erlang
-          pkgs.beamPackages.rebar3
-        ];
+        nativeBuildInputs =
+          (with pkgs; [
+            gleam
+          ])
+          ++ (
+            with pkgs;
+            with beamPackages;
+            [
+              beamPackages.erlang
+              beamPackages.rebar3
+            ]
+          );
       };
     };
 }

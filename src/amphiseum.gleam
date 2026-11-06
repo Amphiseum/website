@@ -8,9 +8,9 @@ import lustre/element.{type Element}
 import lustre/element/html
 import modem
 import navbar
-import pages/home
-import pages/contact
 import pages/about
+import pages/contact
+import pages/home
 import pages/services
 
 pub fn main() {
@@ -61,10 +61,9 @@ fn update(_, msg: Msg) -> #(Route, Effect(Msg)) {
 }
 
 fn view(route: Route) -> Element(Msg) {
-  html.div([attribute.styles([
-      #("font-family", "sans-serif"),
-      #("color","#393e6a")
-    ])], [
+  html.div(
+    [attribute.styles([#("font-family", "sans-serif"), #("color", "#393e6a")])],
+    [
       navbar.add(),
       case route {
         Home -> home.add()
@@ -73,5 +72,6 @@ fn view(route: Route) -> Element(Msg) {
         Services -> services.add()
       },
       footer.add(),
-  ])
+    ],
+  )
 }
